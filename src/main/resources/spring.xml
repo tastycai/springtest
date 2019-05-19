@@ -14,6 +14,15 @@
 
     <context:component-scan base-package="lcwms"></context:component-scan>
 
+    <bean id="userDao" class="lcwms.springtest.dao.UserDao" />
+
+    <bean id="myBeforeAdvice" class="lcwms.springtest.advice.MyBeforeAdvice" />
+
+    <bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="userDao" />
+        <property name="interceptorNames" value="myBeforeAdvice" />
+    </bean>
+
     <!-- 加载配置文件 -->
     <context:property-placeholder location="classpath:db.properties" />
 

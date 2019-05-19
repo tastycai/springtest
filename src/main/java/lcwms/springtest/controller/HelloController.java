@@ -1,5 +1,6 @@
 package lcwms.springtest.controller;
 
+import lcwms.springtest.dao.UserDao;
 import lcwms.springtest.service.OrderService;
 import lcwms.springtest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,13 @@ public class HelloController {
 
         // System.out.println(applicationContext.getBean("userServiceImpl").equals(applicationContext.getParent().getBean("userServiceImpl")));
 
-        System.out.println(orderService);
+        UserDao userDaoProxy = (UserDao) applicationContext.getBean("userDaoProxy");
 
-        orderService.saveOrder("123");
+        userDaoProxy.add();
+
+        System.out.println(userDaoProxy);
+
+        orderService.select("123");
 
         return userService.showUserName();
     }

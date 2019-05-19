@@ -17,6 +17,12 @@ public class OrderServiceImpl implements OrderService{
     private JdbcTemplate jdbcTemplate;
 
     @Override
+    public void select(String order) {
+
+        this.saveOrder(order);
+    }
+
+    @Override
     public String saveOrder(String order) {
 
         List<String> orderNoList = new ArrayList<>();
